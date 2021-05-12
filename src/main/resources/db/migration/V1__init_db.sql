@@ -36,12 +36,12 @@ CREATE TABLE "records" (
 	CONSTRAINT records_pk PRIMARY KEY ("id")
 );
 
-alter table "records" add CONSTRAINT "records_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
-alter table "folder_records" add CONSTRAINT "records_fk1" FOREIGN KEY ("folder_id") REFERENCES "folder_records"("id");
-
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
 ALTER SEQUENCE folder_records_id_seq OWNED BY folder_records.id;
 ALTER SEQUENCE records_id_seq OWNED BY records.id;
+
+alter table "records" add CONSTRAINT "records_fk0" FOREIGN KEY ("user_id") REFERENCES "users"("id");
+alter table "records" add CONSTRAINT "records_fk1" FOREIGN KEY ("folder_id") REFERENCES "folder_records"("id");
 
 ALTER TABLE public.users ALTER COLUMN id SET DEFAULT nextval('users_id_seq');
 ALTER TABLE public.folder_records ALTER COLUMN id SET DEFAULT nextval('folder_records_id_seq');
